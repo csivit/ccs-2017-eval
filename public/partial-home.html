@@ -1,0 +1,11 @@
+<md-content class="md-padding">
+    <md-nav-bar md-selected-nav-item="currentNavItem" nav-bar-aria-label="navigation links">
+      <md-nav-item md-nav-sref="home.details({type: 'tech'})" name="page1">Technical</md-nav-item>
+      <md-nav-item md-nav-sref="home.details({type: 'management'})" name="page2">Management</md-nav-item>
+      <md-nav-item md-nav-sref="home.details({type: 'creative'})" name="page3">Creative</md-nav-item>
+    </md-nav-bar>
+    <md-card layout-padding>
+    <div ui-view></div>
+    </md-card>
+</div>
+  </md-content>

@@ -1,0 +1,39 @@
+<h2>
+    {{message}}</h2>
+<div>
+    <md-input-container class="md-block">
+        <label>Filter</label>
+        <input ng-model="filter.search">
+    </md-input-container>
+</div>
+<md-table-container>
+    <table md-table>
+        <thead md-head md-order="query.order">
+            <tr md-row>
+                <th md-column md-order-by="_user.name"><span>Name</span></th>
+                <th md-column md-order-by="_user.regno"><span>Reg No</span></th>
+                <th md-column md-order-by="_user.email"><span>Email</span></th>
+                <th md-column md-order-by="_user.phone"><span>Phone</span></th>
+                <th md-column md-order-by="score"><span>Score</span></th>
+                <th md-column><span>Evaluate</span></th>
+            </tr>
+        </thead>
+        <tbody md-body>
+            <tr md-row md-auto-select md-select="resp" ng-repeat="resp in responses  | filter: filter.search | orderBy: query.order | limitTo: query.limit: (query.page - 1) * query.limit">
+                <td md-cell>{{resp._user.name}}</td>
+                <td md-cell>{{resp._user.regno}}</td>
+                <td md-cell>{{resp._user.email}}</td>
+                <td md-cell>{{resp._user.phone}}</td>
+                <td md-cell>{{resp.score}}</td>
+                <td ng-if="resp.score === -1" md-cell>
+                    <a ui-sref="evaluate({userId: resp._id})"><md-button class="md-primary">evaluate</md-button></a>
+                </td>
+                <td ng-if="resp.score !== -1" md-cell>
+                    <a ui-sref="evaluate({userId: resp._id})"><md-button class="md-primary">Revaluate</md-button></a>
+                </td>                
+            </tr>
+        </tbody>
+    </table>
+</md-table-container>
+<md-table-pagination md-limit="query.limit" md-limit-options="[5, 10, 15]" md-page="query.page" md-total="{{responses.length}}"
+    md-page-select></md-table-pagination>

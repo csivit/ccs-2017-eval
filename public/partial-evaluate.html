@@ -1,0 +1,30 @@
+<div layout-padding>
+    <h2></h2>
+    <md-card layout-padding>
+        <h1>{{user.name}}</h1>
+        <h2>{{user.phone}}</h2>
+        <p>Achievements</p>
+        <p>{{user.achievements || 'none'}}</p>
+        <p>Interests</p>
+        <p>{{user.area_interest}}</p>
+        <p>How did you come to know about CSI?</p>
+        <p>{{user.question1}}</p>
+        <p>How was the evaluation process?</p>
+        <p>{{user.question2}}</p>
+        <p>Why do you wanna join CSI?</p>
+        <p>{{user.question3}}</p>
+        <div ng-repeat="question in questions">
+            <p><b>Q.</b> {{question.question}}</p>
+            <p><b>Ans.</b> {{answers['ans' + question._id] || 'No answer'}}</p>
+        </div>
+        <md-slider-container>
+            <span>Rating</span>
+            <md-slider flex min="0" max="20" ng-model="rating" id="rating-slider">
+            </md-slider>
+            <md-input-container>
+                <input flex type="number" ng-model="rating" aria-controls="rating-slider">
+            </md-input-container>
+        </md-slider-container>
+        <md-button ng-click="submitRating()">Submit and review another</md-button>
+    </md-card>
+</div>
